@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Drop</string>
+    <string name="channel_name">Channel Name</string>
+
+
+    <string name="screen1">Upload a Video</string>
+    <string name="screen2">Create a Short</string>
+    <string name="screen3">Go Live</string>
+    <string name="screen1desc">Record a new video or select a video you already have on your phone.
+        Watch YouTube Videos for Free</string>
+    <string name="screen2desc">Create, edit, and upload your own short videos.
+        All you need is an idea and a phone to record and share Shorts. </string>
+    <string name="screen3desc">YouTube live streaming allows you to reach your community in real time.
+    Go live on YouTube from webcam, mobile and encoder streaming.</string>
+    <string name="startDesc">Create a long video or shorts and upload on youtube. Interact with your subscribers on youtube live.</string>
+
+
+    //Headings
+    <string name="heading_one">Billions of Music avaiable</string>
+    <string name="heading_two">Play the music Instant</string>
+    <string name="heading_three">Some where in the word you can listern</string>
+    <string name="heading_fourth">Connect the music with friends</string>
+
+    //Description
+    <string name="desc_one">The Best Part Of Waking Up Is App In Your Cup</string>
+    <string name="desc_two">Just press play and let the music do the talking</string>
+    <string name="desc_three">Sometimes hearing the music is just the best way to ignore the world</string>
+    <string name="desc_fourth">Music and sleep are the two most common ways to escape from everything.</string>
+
+    <string name="security">Ensuring the security of user accounts is paramount in any online music application, and Drop is no exception. At Drop, we prioritize the protection of our users personal information and strive to maintain the highest standards of account security.\n\n
+
+To safeguard user accounts, Drop implements robust authentication measures powered by Firebases advanced security features. User credentials are encrypted and securely stored, preventing unauthorized access to sensitive information. Additionally, Drop employs industry-standard protocols such as HTTPS encryption to encrypt data transmitted between the app and our servers, ensuring that user interactions are shielded from potential threats.\n\n
+
+In addition to encryption, Drop offers users multiple layers of account protection. Two-factor authentication (2FA) adds an extra level of security by requiring users to verify their identity through a secondary method, such as a one-time code sent via SMS or email, before granting access to their accounts. \nThis ensures that even if a users password is compromised, unauthorized access is still prevented.
+
+Furthermore, Drop regularly monitors account activity for any suspicious behavior, such as login attempts from unfamiliar devices or locations. In the event of unusual activity, Drop promptly notifies users and takes proactive measures to secure their accounts, such as resetting passwords or temporarily suspending access until the user verifies their identity. </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

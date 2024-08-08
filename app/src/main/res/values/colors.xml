@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="purple_200">#2A6CCA</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue">#2A6CCA</color>
+    <color name="green">#04a96d</color>
+    <color name="orange">#FFA10D</color>
+    <color name="gray">#9A9996</color>
+    <color name="graytin">#CEE4E4E3</color>
+    <color name="Textblue">#2682c5</color>
+    <color name="Textgray">#eeeff2</color>
+    <color name="scangray">#797979</color>
+    <color name="tabgray">#f4f5f7</color>
+    <color name="tabgray1">#E6E6E6</color>
+    <color name="tabgray2">#f5f5f5</color>
+    <color name="buttongreen">#26ad5e</color>
+    <color name="red">#ed3334</color>
+    <color name="update">#0071fe</color>
+    <color name="fabplus">#0075bd</color>
+    <color name="fabminus">#dcdce4</color>
+    <color name="lightblue">#edf0f7</color>
+    <color name="newgray">#858b91</color>
+    <color name="purple1">#5f259e</color>
+    <color name="green6">#1DB954</color>
+    <color name="nightblack">#0C090A</color>
+
+    <color name="progressBarBackground">#E41818</color> <!-- Gray background color -->
+    <color name="progressBarProgress">#00FF00</color> <!-- Green progress color (for internal storage) -->
+    <color name="progressBarSecondaryProgress">#FFA500</color> <!-- Orange secondary progress color (for external storage) -->
+
+
+    <color name="lightblack">#323232</color>
+    <color name="greenyellow">#26ad5e</color>
+    <color name="greenyellow2">#93E9BE</color>
+    <color name="gray2">#f6f6f6</color>
+
+
+    <color name="menuItemBackground">#F2F2F2</color>
+    <color name="menuItemTextColor">#333333</color>
+
+    <color name="red1">#f02829</color>
+    <color name="black1">#010101</color>
+    <color name="gray1">#c0bfc4</color>
+    <color name="green1">#26ad5e</color>
+    <color name="green5">#03F40D</color>
+    <color name="blue1">#2695ff</color>
+    <color name="ligthgray1">#e7e8ea</color>
+    <color name="ligthblue1">#5e2a94</color>
+    <color name="orange1">#e67a00</color>
+    <color name="graylight2">#f8f8f8</color>
+
+    <color name="darkblue">#1d3050</color>
+
+    <color name="gray3">#F4F2F5</color>
+
+    <color name="redColor">#FF0000</color>
+
+    <color name="line">#eaeaec</color>
+
+    <color name="black2">#343539</color>
+
+    <color name="mblue">#6b46ff</color>
+
+    <color name="mdarkblue">#111427</color>
+    <color name="mdarkblue2">#1a2038</color>
+    <color name="iceblue">#d0f2fe</color>
+    <color name="dblue">#00BFFF</color>
+
+
+    <color name="lavender">#8692f7</color>
+    <color name="grey">#808080</color>
+
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#ffffff</color>
+
+    <color name="dgyblue6">#7490ef</color>
+
+    <!-- colors for button style -->
+
+    <color name="gradient_start_color">#4c84ff</color>
+    <color name="gradient_end_color">#18a3fe</color>
+
+
+    <!-- colors for tab and screent text -->
+
+    <color name="tab_indicator_gray">#c0c0c0</color>
+    <color name="intro_title_color">#000000</color>
+    <color name="intro_description_color">#656565</color>
+
+
+    <color name="lavender2">#2E4053</color>
+
+
+    //onboarding colors
+    <color name="background">#F0F4F3</color>
+    <color name="buttontext">#50C2C9</color>
+
+    //indicator color
+    <color name="inactive">#C4C4C4</color>
+    <color name="active">#2695ff</color>
+
+
+</resources>

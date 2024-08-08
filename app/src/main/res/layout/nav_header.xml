@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black2"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      >
+      <TextView
+          android:id="@+id/nav_header_username2"
+          android:layout_width="50dp"
+          android:layout_height="50dp"
+          android:layout_alignParentEnd="true"
+          android:layout_centerVertical="true"
+          android:background="@drawable/roundwhite"
+          android:gravity="center"
+          android:maxLength="1"
+          android:fontFamily="@font/font123"
+          android:maxLines="1"
+          android:text="D"
+          android:padding="10dp"
+          android:textColor="@color/black"
+          android:textSize="20dp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/nav_header_username"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="45dp"
+          android:fontFamily="@font/semibold"
+          android:paddingLeft="10dp"
+          android:text="Username"
+          android:textColor="@color/white"
+          android:textSize="20dp"
+          android:textStyle="bold"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/nav_header_username2"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="45dp"
+          android:paddingLeft="10dp"
+          android:text="view profile"
+          android:fontFamily="@font/regular"
+          android:textColor="@color/white"
+          android:textSize="10dp"
+          android:textStyle="bold"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/nav_header_username2"
+          app:layout_constraintTop_toBottomOf="@+id/nav_header_username" />
+
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="1000dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nav_header_username2"></View>
+
+</LinearLayout>

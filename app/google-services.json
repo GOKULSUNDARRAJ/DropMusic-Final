@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "923867194517",
+    "project_id": "drop-track-e203a",
+    "storage_bucket": "drop-track-e203a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923867194517:android:1e187141579faecfffe79c",
+        "android_client_info": {
+          "package_name": "com.example.dropu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZDs0cBiq43mUOBcQdEsLQ_j_fr7qm4mE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
