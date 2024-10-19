@@ -133,9 +133,10 @@ public class QrActivity extends AppCompatActivity {
             stream.close();
 
             // Get content URI for the saved image file
-            Uri imageUri = FileProvider.getUriForFile(this, "com.example.dropu.fileprovider", imageFile);
+            Uri imageUri = FileProvider.getUriForFile(this, "com.gokulsundar4545.dropu.fileprovider", imageFile);
 
-            // Create a share intent
+
+            // Create a share intentaza
             Intent shareIntent = new Intent();
             shareIntent.setAction(Intent.ACTION_SEND);
             shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);

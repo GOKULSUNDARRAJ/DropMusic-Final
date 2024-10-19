@@ -47,7 +47,7 @@ public class RecentlyPlayedAdapter extends RecyclerView.Adapter<RecentlyPlayedAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         SongModel song = songList.get(position);
-        holder.bind(song);
+        holder.bind(song,position);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class RecentlyPlayedAdapter extends RecyclerView.Adapter<RecentlyPlayedAd
             clear=itemView.findViewById(R.id.clear);
         }
 
-        public void bind(SongModel song) {
+        public void bind(SongModel song,int position) {
             titleTextView.setText(song.getTitle());
             artistTextView.setText(song.getSubtitle());
             Picasso.get().load(song.getCoverUrl()).into(songImge);
@@ -83,8 +83,8 @@ public class RecentlyPlayedAdapter extends RecyclerView.Adapter<RecentlyPlayedAd
                 public void onClick(View view) {
                     Context context = view.getContext();
                     // Assuming you have the MediaPlayerManager class defined with startPlaying method
-                    MediaPlayerManager.startPlaying(context, song);
 
+                    MediaPlayerManager.startPlaying(context, song, position, songList);
 
                     Intent intent = new Intent(context, PlayerActivity.class);
                     context.startActivity(intent);

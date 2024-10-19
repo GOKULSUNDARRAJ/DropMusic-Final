@@ -123,7 +123,8 @@ public class searchallActivity extends AppCompatActivity {
                                 String artist = documentSnapshot.getString("artist");
                                 String name = documentSnapshot.getString("name");
                                 Long count = documentSnapshot.getLong("count");
-                                SongModel song = new SongModel(key,id, songTitle, subtitle, Url, coverUrl, lyrics,artist,name, count);
+                                String moviename = documentSnapshot.getString("moviename");
+                                SongModel song = new SongModel(key,id, songTitle, subtitle, Url, coverUrl, lyrics,artist,name,moviename, count);
 
                                 if (count != null && count > 5) {
                                     updatedList.add(song);
@@ -195,7 +196,7 @@ public class searchallActivity extends AppCompatActivity {
     }
 
     public void gotomusics(View view) {
-        Intent intent=new Intent(view.getContext(), MusicsActivity.class);
+        Intent intent=new Intent(view.getContext(), MovieDetailActivity.class);
         startActivity(intent);
         finish();
     }

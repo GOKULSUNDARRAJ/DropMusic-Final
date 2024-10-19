@@ -69,8 +69,8 @@ public class PlaylistAdapter2 extends RecyclerView.Adapter<PlaylistAdapter2.View
             public void onClick(View view) {
                 Context context = view.getContext();
                 // Assuming you have the MediaPlayerManager class defined with startPlaying method
-                MediaPlayerManager.startPlaying(context, song);
 
+                MediaPlayerManager.startPlaying(context, song, position, favoritesList);
 
                 Intent intent = new Intent(context, PlayerActivity.class);
                 context.startActivity(intent);
@@ -79,8 +79,9 @@ public class PlaylistAdapter2 extends RecyclerView.Adapter<PlaylistAdapter2.View
         });
 
 
-
         holder.carproduct.startAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(),R.anim.recycler2));
+
+
     }
 
     @Override

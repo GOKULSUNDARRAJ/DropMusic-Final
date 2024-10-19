@@ -135,10 +135,7 @@ public class ArtistFullActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent intent=new Intent(ArtistFullActivity.this, searchallActivity.class);
-        startActivity(intent);
-        finish();
-        overridePendingTransition(R.anim.slid_from_left, R.anim.slid_to_right);
+
     }
 }
 

@@ -41,6 +41,7 @@ public class SongsListActivity extends AppCompatActivity {
     private TextView categorySongsTextView;
     private Intent intent;
     private FirebaseFirestore db;;
+    List<SongModel> songModelList = new ArrayList<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +103,7 @@ public class SongsListActivity extends AppCompatActivity {
             if (category != null) {
                 songsList = category.getSongs();
                 // Initialize and set adapter
-                songAdapter = new SongAdapter(songsList);
+                songAdapter = new SongAdapter(songsList,songModelList);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 recyclerView.setAdapter(songAdapter);
 

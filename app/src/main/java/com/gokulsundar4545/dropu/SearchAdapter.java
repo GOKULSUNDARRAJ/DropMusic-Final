@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -53,12 +54,23 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SongViewHo
             public void onClick(View view) {
                 Context context = view.getContext();
                 // Assuming you have the MediaPlayerManager class defined with startPlaying method
-                MediaPlayerManager.startPlaying(context, song);
 
 
+                MediaPlayerManager.startPlaying(context, song, position, songList);
                 Intent intent = new Intent(context, PlayerActivity.class);
                 context.startActivity(intent);
                 ((Activity) context).finish();
+            }
+        });
+
+        holder.menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create a new instance of MyBottomSheetFragment2 with songModel as parameter
+                MyBottomSheetFragment2 bottomSheetFragment = new MyBottomSheetFragment2(song);
+
+                // Show the bottom sheet fragment
+                bottomSheetFragment.show(((AppCompatActivity) context).getSupportFragmentManager(), bottomSheetFragment.getTag());
             }
         });
 
@@ -73,7 +85,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SongViewHo
     public static class SongViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView;
         TextView subtitleTextView;
-        ImageView songImage;
+        ImageView songImage,menu;
 
         LinearLayout carproduct;
         public SongViewHolder(@NonNull View itemView) {
@@ -83,6 +95,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SongViewHo
             songImage=itemView.findViewById(R.id.itemImage);
             carproduct=itemView.findViewById(R.id.carproduct);
 
+            menu=itemView.findViewById(R.id.itemImage2);
 
 
         }

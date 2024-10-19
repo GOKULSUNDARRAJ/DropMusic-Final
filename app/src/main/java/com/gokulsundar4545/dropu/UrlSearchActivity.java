@@ -70,9 +70,9 @@ public class UrlSearchActivity extends AppCompatActivity {
                                 String name = documentSnapshot.getString("name");
                                 Long count = documentSnapshot.getLong("count");
                                 String key = documentSnapshot.getId();
-
+                                String moviename = documentSnapshot.getString("moviename");
                                 // Create SongModel object
-                                SongModel song = new SongModel(key, id, songTitle, subtitle, songUrl, coverUrl, lyrics,artist,name, count);
+                                SongModel song = new SongModel(key, id, songTitle, subtitle, songUrl, coverUrl, lyrics,artist,name,moviename, count);
                                 songList.add(song); // Add song to list
                             } else {
                                 Log.d("SearchActivity", "No such document");

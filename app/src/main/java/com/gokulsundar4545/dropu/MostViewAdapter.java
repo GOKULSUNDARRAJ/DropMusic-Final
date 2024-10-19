@@ -51,9 +51,8 @@ public class MostViewAdapter extends RecyclerView.Adapter<MostViewAdapter.ViewHo
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
-                // Assuming you have the MediaPlayerManager class defined with startPlaying method
-                MediaPlayerManager.startPlaying(context, song);
-
+                // Assuming you have the MediaPlayerManager class defined with startPlaying methodMediaPlayerManager.startPlaying(context, song)
+                MediaPlayerManager.startPlaying(context, song, position, songList);
                 Intent intent=new Intent(view.getContext(), PlayerActivity.class);
                 context.startActivity(intent);
 

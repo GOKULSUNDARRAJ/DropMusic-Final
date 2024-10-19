@@ -1,6 +1,6 @@
 package com.gokulsundar4545.dropu;
 
-
+import android.Manifest;
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
@@ -25,9 +25,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-
-import android.Manifest;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -38,7 +35,6 @@ import java.util.List;
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
     private static final int REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     private List<String> songIds;
-
     private List<SongModel> songList;
 
     public SongAdapter(List<String> songIds, List<SongModel> songList) {
@@ -53,27 +49,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
         }
         return builder.toString();
     }
-
-    public SongAdapter(List<String> songIds) {
-        this.songIds = songIds;
-    }
-
-    private SongModel getSongModel(DocumentSnapshot documentSnapshot) {
-        String songTitle = documentSnapshot.getString("title");
-        String subtitle = documentSnapshot.getString("subtitle");
-        String coverUrl = documentSnapshot.getString("coverUrl");
-        String Url = documentSnapshot.getString("url");
-        String id = documentSnapshot.getString("id");
-        String lyrics = documentSnapshot.getString("lyrics");
-        String artist = documentSnapshot.getString("artist");
-        String name = documentSnapshot.getString("name");
-        Long count = documentSnapshot.getLong("count");
-
-
-        String key = documentSnapshot.getId();
-        return new SongModel(key, id, songTitle, subtitle, Url, coverUrl, lyrics, artist, name, count);
-    }
-
 
     @NonNull
     @Override
@@ -95,7 +70,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView titleTextView, subtitleTextView;
-        private ImageView coverImageView,itemImage2;
+        private ImageView coverImageView, itemImage2;
         private LinearLayout carProduct;
         private Context context;
 
@@ -106,7 +81,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
             subtitleTextView = itemView.findViewById(R.id.subtitle);
             coverImageView = itemView.findViewById(R.id.itemImage);
             carProduct = itemView.findViewById(R.id.carproduct);
-            itemImage2=itemView.findViewById(R.id.itemImage2);
+            itemImage2 = itemView.findViewById(R.id.itemImage2);
         }
 
         public void bind(String songId) {
@@ -130,7 +105,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
                                     carProduct.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            MediaPlayerManager.startPlaying(context, songModel);
+                                            MediaPlayerManager.startPlaying(context, songModel, getAdapterPosition(), songList);
                                             Intent intent = new Intent(context, PlayerActivity.class);
                                             context.startActivity(intent);
                                             ((Activity) context).finish();
@@ -147,8 +122,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
                                             bottomSheetFragment.show(((AppCompatActivity) context).getSupportFragmentManager(), bottomSheetFragment.getTag());
                                         }
                                     });
-
-
 
                                     carProduct.setOnLongClickListener(new View.OnLongClickListener() {
                                         @Override
@@ -209,5 +182,4 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
             }
         }
     }
-
 }

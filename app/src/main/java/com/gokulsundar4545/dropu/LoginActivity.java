@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Check if user is already logged in
         if (firebaseAuth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            startActivity(new Intent(LoginActivity.this, MainActivity2.class));
             finish(); // Finish LoginActivity to prevent going back to it
         }
 
@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                                 updateFcmToken();
 
                                 // Navigate to MainActivity
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                startActivity(new Intent(LoginActivity.this, MainActivity2.class));
                                 finish();
                             } else {
                                 Snackbar.make(view, ERROR_MESSAGE_LOGIN_FAILED_PREFIX + task.getException().getMessage(), Snackbar.LENGTH_SHORT).show();
@@ -97,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                             String userId = currentUser.getUid();
                             // Update FCM token in database under the user's node
                             FirebaseDatabase.getInstance().getReference("Users").child(userId).child("fcmToken").setValue(fcmToken);
+                            FirebaseDatabase.getInstance().getReference("Users").child(userId).child("token").setValue(fcmToken);
                         }
                     } else {
                         Toast.makeText(LoginActivity.this, "Failed to retrieve FCM token", Toast.LENGTH_SHORT).show();

@@ -3,11 +3,14 @@ package com.gokulsundar4545.dropu;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,12 +26,12 @@ import java.util.List;
 
 public class playlistfavActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private PlaylistAdapter adapter;
-    private List<SongModel> favoritesList;
 
     ImageView imageView3;
 
+    private RecyclerView recyclerViewplaylist;
+    private PlaylistAdapter24 adapterplay;
+    private List<PlaylistItem> playlistItems;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,45 +48,68 @@ public class playlistfavActivity extends AppCompatActivity {
             }
         });
 
-        recyclerView = findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView recyclerViewplaylist = findViewById(R.id.recyclerview);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2); // 2 is the number of columns
+        recyclerViewplaylist.setLayoutManager(gridLayoutManager);
 
-        favoritesList = new ArrayList<>();
-        adapter = new PlaylistAdapter(favoritesList);
-        recyclerView.setAdapter(adapter);
+// Initialize playlistItems list
+        playlistItems = new ArrayList<>();
 
-        // Fetch the user's favorites from Firebase
-        fetchFavorites();
+// Initialize the adapter with the playlistItems list
+        adapterplay = new PlaylistAdapter24(playlistfavActivity.this, playlistItems);
+
+// Set the adapter to the RecyclerView
+        recyclerViewplaylist.setAdapter(adapterplay);
+
+        loadPlaylistData();
+
+
     }
 
-    private void fetchFavorites() {
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference favoritesRef = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("playlist");
+    private void loadPlaylistData() {
+        // Fetch data from Firebase and update playlistItems
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference playlistRef = database
+                .getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("playlists")
+                .child("selectedSongs");
 
-        favoritesRef.addValueEventListener(new ValueEventListener() {
+        playlistRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                favoritesList.clear(); // Clear existing data
+                Log.d("PlaylistData", "Data fetched successfully from Firebase.");
+
+                playlistItems.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    SongModel song = snapshot.getValue(SongModel.class);
-                    favoritesList.add(song);
+                    // Extract the ID from the snapshot key
+                    String id = snapshot.getKey();
+
+                    // Create PlaylistItem from snapshot
+                    PlaylistItem item = snapshot.getValue(PlaylistItem.class);
+                    if (item != null) {
+                        item.setId(id); // Set the ID in the PlaylistItem object
+                        playlistItems.add(item);
+                        Log.d("PlaylistData", "Added item: " + item.getCoverName() + ", ID: " + item.getId());
+                    } else {
+                        Log.w("PlaylistData", "Item is null at snapshot key: " + id);
+                    }
                 }
-                adapter.setFavoritesList(favoritesList); // Update adapter data
+                adapterplay.notifyDataSetChanged();
+                Log.d("PlaylistData", "RecyclerView data updated.");
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle potential errors here
+                Log.e("PlaylistData", "Failed to load data", databaseError.toException());
+                Toast.makeText(playlistfavActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent=new Intent(playlistfavActivity.this, searchallActivity.class);
-        startActivity(intent);
-        finish();
-        overridePendingTransition(R.anim.slid_from_left, R.anim.slid_to_right);
     }
 }

@@ -242,6 +242,7 @@ public class ChatActivity extends AppCompatActivity {
         messageMap.put("type", messageType);
 
 
+
         String messageKey = databaseReference.child("Messages").push().getKey();
 
         databaseReference.child("Messages").child(messageKey).setValue(messageMap)
@@ -257,9 +258,50 @@ public class ChatActivity extends AppCompatActivity {
                         Toast.makeText(ChatActivity.this, "Failed to send message", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+
+
+        final DatabaseReference chatRef1=FirebaseDatabase.getInstance()
+                .getReference("Chatlist")
+                .child(myUid)
+                .child(hisUid);
+        chatRef1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                if (!snapshot.exists()){
+                    chatRef1.child("id").setValue(hisUid);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+
+        final DatabaseReference chatRef2=FirebaseDatabase.getInstance()
+                .getReference("Chatlist")
+                .child(myUid)
+                .child(hisUid);
+        chatRef2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                if (!snapshot.exists()){
+                    chatRef2.child("id").setValue(hisUid);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
     }
 
     private void sendImageMessage(Uri imageUri) {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String myUid = currentUser.getUid();
         progressBar.setVisibility(View.VISIBLE);
         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("chat_images");
         String imageName = System.currentTimeMillis() + "." + getFileExtension(imageUri);
@@ -283,6 +325,45 @@ public class ChatActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                     }
                 });
+
+
+
+        final DatabaseReference chatRef1=FirebaseDatabase.getInstance()
+                .getReference("Chatlist")
+                .child(myUid)
+                .child(hisUid);
+        chatRef1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                if (!snapshot.exists()){
+                    chatRef1.child("id").setValue(hisUid);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+
+        final DatabaseReference chatRef2=FirebaseDatabase.getInstance()
+                .getReference("Chatlist")
+                .child(myUid)
+                .child(hisUid);
+        chatRef2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                if (!snapshot.exists()){
+                    chatRef2.child("id").setValue(hisUid);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
     }
 
     private String getFileExtension(Uri uri) {

@@ -52,14 +52,9 @@ public class CustomDialogClassfoeadd extends Dialog {
                 FirebaseAuth.getInstance().signOut();
                 // Start LoginActivity
                 Intent intent = new Intent(context, LoginActivity.class);
-
                 context.startActivity(intent);
                 ((Activity) context).finish();
 
-                // Optionally, you can add transition animation here
-                // Note: overridePendingTransition() should be called from an Activity
-                // context.overridePendingTransition(R.anim.slid_from_top, R.anim.slid_to_bottom);
-                // Dismiss the dialog
                 dismiss();
             }
         });

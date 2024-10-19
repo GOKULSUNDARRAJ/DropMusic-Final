@@ -198,7 +198,7 @@ public class SettingsActivity extends AppCompatActivity implements AudioManager.
     }
 
     public void gotomain(View view) {
-        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+        Intent intent = new Intent(SettingsActivity.this, MainActivity2.class);
         startActivity(intent);
         finish();
     }
@@ -206,8 +206,7 @@ public class SettingsActivity extends AppCompatActivity implements AudioManager.
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
-        startActivity(intent);
+
         finish();
     }
 

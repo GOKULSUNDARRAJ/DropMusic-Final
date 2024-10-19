@@ -112,8 +112,7 @@ public class RecentlyPlayedActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent=new Intent(RecentlyPlayedActivity.this,MainActivity.class);
-        startActivity(intent);
+
         finish();
     }
 }

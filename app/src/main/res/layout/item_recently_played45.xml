@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="210dp"
-    android:layout_height="250dp">
+    android:layout_width="180dp"
+    android:layout_height="200dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,15 +13,15 @@
             android:id="@+id/claer"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="180dp"
+            android:layout_marginLeft="160dp"
             android:background="@drawable/baseline_clear_24"
             android:elevation="2dp" />
 
 
         <LinearLayout
             android:id="@+id/carproduct"
-            android:layout_width="170dp"
-            android:layout_height="220dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp">
 
@@ -44,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/regular"
+                    android:visibility="gone"
                     android:gravity="center"
                     android:maxLines="1"
                     android:textColor="@color/white"
@@ -56,6 +57,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/regular"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:maxLines="1"
                     android:textColor="@color/white"
                     android:textSize="15dp"

@@ -129,7 +129,8 @@ public class SearchActivity extends AppCompatActivity {
                                 String artist = documentSnapshot.getString("artist");
                                 String name = documentSnapshot.getString("name");
                                 Long count = documentSnapshot.getLong("count");
-                                SongModel song = new SongModel(key,id, songTitle, subtitle, Url, coverUrl,lyrics,artist,name, count);
+                                String moviename = documentSnapshot.getString("moviename");
+                                SongModel song = new SongModel(key,id, songTitle, subtitle, Url, coverUrl,lyrics,artist,name,moviename, count);
 
                                 songList.add(song);
                             } else {
@@ -164,8 +165,6 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent=new Intent(SearchActivity.this,MainActivity.class);
-        startActivity(intent);
         finish();
         overridePendingTransition(R.anim.slid_from_left,R.anim.slid_to_right);
     }

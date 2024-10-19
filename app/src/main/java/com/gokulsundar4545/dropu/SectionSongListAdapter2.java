@@ -82,7 +82,7 @@ public class SectionSongListAdapter2 extends RecyclerView.Adapter<SectionSongLis
                                     public void onClick(View view) {
                                         Context context = view.getContext();
                                         // Assuming you have the MediaPlayerManager class defined with startPlaying method
-                                        MediaPlayerManager.startPlaying(context, songModel);
+
 
 
 
@@ -121,8 +121,8 @@ public class SectionSongListAdapter2 extends RecyclerView.Adapter<SectionSongLis
             Long count = documentSnapshot.getLong("count");
 
             String key = documentSnapshot.getId();
-
-            return new SongModel(key,id, songTitle, subtitle, Url, coverUrl,lyrics,artist,name, count);
+            String moviename = documentSnapshot.getString("moviename");
+            return new SongModel(key,id, songTitle, subtitle, Url, coverUrl,lyrics,artist,name,moviename, count);
         }
     }
 

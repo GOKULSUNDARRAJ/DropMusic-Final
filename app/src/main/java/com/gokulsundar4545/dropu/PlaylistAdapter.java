@@ -69,8 +69,9 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
             public void onClick(View view) {
                 Context context = view.getContext();
                 // Assuming you have the MediaPlayerManager class defined with startPlaying method
-                MediaPlayerManager.startPlaying(context, song);
 
+
+                MediaPlayerManager.startPlaying(context, song, position, favoritesList);
 
                 Intent intent = new Intent(context, PlayerActivity.class);
                 context.startActivity(intent);

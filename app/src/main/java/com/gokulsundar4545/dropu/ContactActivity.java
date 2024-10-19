@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -61,12 +62,24 @@ public class ContactActivity extends AppCompatActivity {
     private MostViewAdapter3 adapter2;
     TextView username1,textView445,req;
 
+    FloatingActionButton fab;
     ImageView imageView5;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
+
+        fab=findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(v.getContext(), SearchChatMainActivity.class));
+            }
+        });
+
+
 
         imageView5=findViewById(R.id.imageView5);
         imageView5.setOnClickListener(new View.OnClickListener() {
@@ -152,7 +165,8 @@ public class ContactActivity extends AppCompatActivity {
                                 String artist = documentSnapshot.getString("artist");
                                 String name = documentSnapshot.getString("name");
                                 Long count = documentSnapshot.getLong("count");
-                                SongModel song = new SongModel(key,id, songTitle, subtitle, Url, coverUrl,lyrics,artist,name, count);
+                                String moviename = documentSnapshot.getString("moviename");
+                                SongModel song = new SongModel(key, id, songTitle, subtitle, Url, coverUrl, lyrics, artist, name,moviename, count);
 
                                 if (count != null && count > 5) {
                                     updatedList.add(song);
@@ -467,8 +481,6 @@ public class ContactActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent=new Intent(ContactActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
+
     }
 }

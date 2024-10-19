@@ -186,6 +186,7 @@ public class MyBottomSheetFragment3 extends BottomSheetDialogFragment {
         });
 
 
+
         return view;
     }
 

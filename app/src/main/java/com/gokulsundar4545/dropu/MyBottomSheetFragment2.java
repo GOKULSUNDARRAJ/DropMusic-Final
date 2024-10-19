@@ -1,6 +1,8 @@
 package com.gokulsundar4545.dropu;
 
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.DownloadManager;
@@ -9,6 +11,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -25,11 +28,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -65,13 +70,15 @@ public class MyBottomSheetFragment2 extends BottomSheetDialogFragment {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     ImageView playliist1, bar;
-    LinearLayout download, share, playlist, download061, download065, download006;
+    LinearLayout download, share, playlist, download061, download065, download006,download056;
     TextView notification5705;
 
 
     ImageView songImage1;
     TextView title1, subtitle1;
+    ProgressBar progressBar;
 
+    ImageView imageViewdownload;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,6 +87,10 @@ public class MyBottomSheetFragment2 extends BottomSheetDialogFragment {
         View view = inflater.inflate(R.layout.fragment_my_bottom_sheet2, container, false);
         download = view.findViewById(R.id.download);
         share = view.findViewById(R.id.share);
+
+        imageViewdownload=view.findViewById(R.id.download23);
+
+        progressBar =view.findViewById(R.id.progressBar);
 
         songImage1 = view.findViewById(R.id.songImage);
         title1 = view.findViewById(R.id.title);
@@ -187,6 +198,17 @@ public class MyBottomSheetFragment2 extends BottomSheetDialogFragment {
         });
 
 
+        download056=view.findViewById(R.id.download056);
+
+        download056.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyBottomSheetFragmentforsent2 bottomSheetFragment = new MyBottomSheetFragmentforsent2(songModel);
+                bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
+            }
+        });
+
+
         return view;
     }
 
@@ -208,6 +230,9 @@ public class MyBottomSheetFragment2 extends BottomSheetDialogFragment {
         } else {
             // Permission already granted, proceed with download
             downloadSong(songModel);
+
+            imageViewdownload.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
         }
     }
 
@@ -278,7 +303,6 @@ public class MyBottomSheetFragment2 extends BottomSheetDialogFragment {
 
 
     private void downloadSong(SongModel songModel) {
-        // Example download logic (replace with your implementation)
         String downloadUrl = songModel.getUrl();
         String fileName = songModel.getTitle() + ".mp3";
 
@@ -289,16 +313,74 @@ public class MyBottomSheetFragment2 extends BottomSheetDialogFragment {
         // Set destination folder and file name
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
 
-        DownloadManager downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+        // Get the DownloadManager instance
+        DownloadManager downloadManager = (DownloadManager) requireContext().getSystemService(Context.DOWNLOAD_SERVICE);
         if (downloadManager != null) {
-            // Enqueue the download
-            downloadManager.enqueue(request);
-            Toast.makeText(getContext(), "Downloading " + songModel.getTitle(), Toast.LENGTH_SHORT).show();
+            // Enqueue the download and get the download ID
+            long downloadId = downloadManager.enqueue(request);
+
+            // Initialize progress bar
+            ProgressBar progressBar = getView().findViewById(R.id.progressBar);
+            progressBar.setVisibility(View.VISIBLE);
+
+            // Start tracking download progress
+            trackDownloadProgress(downloadId, progressBar);
         } else {
-            Toast.makeText(getContext(), "Download Manager not available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), "Download Manager not available", Toast.LENGTH_SHORT).show();
         }
     }
 
+    private void trackDownloadProgress(final long downloadId, final ProgressBar progressBar) {
+        final DownloadManager downloadManager = (DownloadManager) requireContext().getSystemService(Context.DOWNLOAD_SERVICE);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                boolean downloading = true;
+
+                while (downloading) {
+                    DownloadManager.Query query = new DownloadManager.Query();
+                    query.setFilterById(downloadId);
+                    Cursor cursor = downloadManager.query(query);
+
+                    if (cursor.moveToFirst()) {
+                        int bytesDownloaded = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
+                        int bytesTotal = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
+
+                        if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_SUCCESSFUL) {
+                            downloading = false;
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    progressBar.setVisibility(View.INVISIBLE); // Hide the progress bar when download finishes
+                                    imageViewdownload.setVisibility(View.VISIBLE);
+                                    Toast.makeText(requireContext(), "Download complete", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+
+                        final int downloadProgress = (int) ((bytesDownloaded * 100L) / bytesTotal);
+
+                        // Ensure smooth updates by running on the UI thread
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressBar.setProgress(downloadProgress);
+                            }
+                        });
+
+                        // Sleep for a short duration to reduce CPU usage and update frequency
+                        try {
+                            Thread.sleep(500); // Adjust the sleep duration if necessary
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    cursor.close();
+                }
+            }
+        }).start();
+    }
 
     private void toggleFavorite() {
         FirebaseUser currentUser = mAuth.getCurrentUser();

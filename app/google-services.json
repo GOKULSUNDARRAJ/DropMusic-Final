@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "923867194517",
+    "firebase_url": "https://drop-track-e203a-default-rtdb.firebaseio.com",
     "project_id": "drop-track-e203a",
     "storage_bucket": "drop-track-e203a.appspot.com"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.dropu"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "923867194517-02blnu9uphvkukh4tuvp0vde8uitgjvl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dropu",
+            "certificate_hash": "bb43c7506f2df9bf0ff189e025a3db51c6eda3af"
+          }
+        },
+        {
+          "client_id": "923867194517-kl79rmnn5b8jh5ur2cu4nmu1fuus579f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCZDs0cBiq43mUOBcQdEsLQ_j_fr7qm4mE"
@@ -20,7 +34,41 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923867194517-kl79rmnn5b8jh5ur2cu4nmu1fuus579f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923867194517:android:24544e4f72b0ec38ffe79c",
+        "android_client_info": {
+          "package_name": "com.gokulsundar4545.dropu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923867194517-kl79rmnn5b8jh5ur2cu4nmu1fuus579f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZDs0cBiq43mUOBcQdEsLQ_j_fr7qm4mE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923867194517-kl79rmnn5b8jh5ur2cu4nmu1fuus579f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

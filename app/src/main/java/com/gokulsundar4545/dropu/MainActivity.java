@@ -13,11 +13,13 @@ import android.net.Network;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,6 +35,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.media3.common.Player;
 import androidx.media3.exoplayer.ExoPlayer;
@@ -108,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
+
     private List<SongModel> songList;
     private RecyclerView recyclerView;
     private MostViewAdapter5 adapter;
@@ -179,15 +183,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     RelativeLayout toolbar;
 
     TextView imageView2;
+    Button gotoplaylist,add;
 
     CardView carproduct23;
     ProgressBar progressbar56;
     TextView artisttext;
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+        gotoplaylist=findViewById(R.id.gotoplaylist);
+        add=findViewById(R.id.add);
+
+
+        gotoplaylist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(),MovieDetailActivity.class));
+            }
+        });
+
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(),AddMovieActivity.class));
+            }
+        });
+
 
 
 
@@ -253,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         linearLayoutPodcast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,ProdcastActivity.class);
+                Intent intent=new Intent(MainActivity.this,MovieDetailActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -300,8 +327,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         String artist = documentSnapshot.getString("artist");
                         String name = documentSnapshot.getString("name");
                         Long countValue = documentSnapshot.getLong("count");
+                        String moviename = documentSnapshot.getString("moviename");
                         if (countValue != null && countValue > 5) { // Check count condition
-                            SongModel song = new SongModel(key, id, songTitle, subtitle, Url, coverUrl, lyrics,artist,name, countValue);
+                            SongModel song = new SongModel(key, id, songTitle, subtitle, Url, coverUrl, lyrics,artist,name,moviename, countValue);
                             updatedList.add(song);
                             count++; // Increment the counter
                         }
@@ -391,8 +419,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 String artist = documentSnapshot.getString("artist");
                                 String name = documentSnapshot.getString("name");
                                 Long countValue = documentSnapshot.getLong("count");
+                                String moviename = documentSnapshot.getString("moviename");
                                 if (countValue != null && countValue > 5) { // Check count condition
-                                    SongModel song = new SongModel(key, id, songTitle, subtitle, Url, coverUrl, lyrics,artist,name, countValue);
+                                    SongModel song = new SongModel(key, id, songTitle, subtitle, Url, coverUrl, lyrics,artist,name,moviename, countValue);
                                     updatedList.add(song);
                                     count++; // Increment the counter
                                 }
@@ -927,7 +956,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                             titleView.setText(section.getName());
                             recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-                            recyclerView.setAdapter(new SectionSongListAdapter4(section));
+                            recyclerView.setAdapter(new SectionSongListAdapter(section));
                             mainLayout.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -1299,7 +1328,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 String name = documentSnapshot.getString("name");
                                 Long count = documentSnapshot.getLong("count");
                                 String key = documentSnapshot.getId();
-                                SongModel song = new SongModel(key, id, songTitle, subtitle, Url, coverUrl, lyrics,artist,name, count);
+                                String moviename = documentSnapshot.getString("moviename");
+                                SongModel song = new SongModel(key, id, songTitle, subtitle, Url, coverUrl, lyrics,artist,name,moviename, count);
 
                                 songList5.add(song);
                             } else {
@@ -1362,5 +1392,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void gotoshare(View view) {
         startActivity(new Intent(view.getContext(), ShareSongActivity.class));
     }
+
+
+
+
 }
 

@@ -110,7 +110,8 @@ public class songallActivitylink extends AppCompatActivity {
                                 String name = documentSnapshot.getString("name");
                                 Long count = documentSnapshot.getLong("count");
                                 String key = documentSnapshot.getId();
-                                SongModel song = new SongModel(key,id, songTitle, subtitle, Url, coverUrl,lyrics,artist,name, count);
+                                String moviename = documentSnapshot.getString("moviename");
+                                SongModel song = new SongModel(key,id, songTitle, subtitle, Url, coverUrl,lyrics,artist,name,moviename, count);
 
                                 songList.add(song);
                             } else {

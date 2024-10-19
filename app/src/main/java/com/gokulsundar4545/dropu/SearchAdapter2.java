@@ -31,7 +31,7 @@ public class SearchAdapter2 extends RecyclerView.Adapter<SearchAdapter2.SongView
     @NonNull
     @Override
     public SongViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.allsong, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.allsongall, parent, false);
         return new SongViewHolder(view);
     }
 
@@ -50,8 +50,8 @@ public class SearchAdapter2 extends RecyclerView.Adapter<SearchAdapter2.SongView
             public void onClick(View view) {
                 Context context = view.getContext();
                 // Assuming you have the MediaPlayerManager class defined with startPlaying method
-                MediaPlayerManager.startPlaying(context, song);
 
+                MediaPlayerManager.startPlaying(context, song, position, songList);
 
                 Intent intent = new Intent(context, PlayerActivity.class);
                 context.startActivity(intent);

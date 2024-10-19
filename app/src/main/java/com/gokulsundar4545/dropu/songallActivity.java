@@ -31,7 +31,7 @@ public class songallActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private SearchAdapter2 adapter;
     private List<SongModel> songList;
-    private EditText editText;
+
     private SwipeRefreshLayout swipeRefreshLayout;
 
     ImageView back;
@@ -48,7 +48,7 @@ public class songallActivity extends AppCompatActivity {
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
         textView=findViewById(R.id.textView);
 
-        editText = findViewById(R.id.search);
+
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +61,7 @@ public class songallActivity extends AppCompatActivity {
 
         textView.startAnimation(AnimationUtils.loadAnimation(songallActivity.this, R.anim.recycler2));
         textView.startAnimation(AnimationUtils.loadAnimation(songallActivity.this, R.anim.recycler4));
-        editText.startAnimation(AnimationUtils.loadAnimation(songallActivity.this, R.anim.recycler2));
+
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
@@ -70,22 +70,7 @@ public class songallActivity extends AppCompatActivity {
         adapter = new SearchAdapter2(this, songList);
         recyclerView.setAdapter(adapter);
 
-        // Add a TextWatcher to the EditText for searching
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                // Filter the songList based on the user input
-                filterSongs(charSequence.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-            }
-        });
 
         // Set up swipe-to-refresh listener
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -120,7 +105,8 @@ public class songallActivity extends AppCompatActivity {
                                 String name = documentSnapshot.getString("name");
                                 Long count = documentSnapshot.getLong("count");
                                 String key = documentSnapshot.getId();
-                                SongModel song = new SongModel(key, id, songTitle, subtitle, Url, coverUrl, lyrics,artist,name, count);
+                                String moviename = documentSnapshot.getString("moviename");
+                                SongModel song = new SongModel(key, id, songTitle, subtitle, Url, coverUrl, lyrics,artist,name,moviename, count);
 
                                 songList.add(song);
                             } else {
@@ -155,9 +141,7 @@ public class songallActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(songallActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
+
     }
 
 

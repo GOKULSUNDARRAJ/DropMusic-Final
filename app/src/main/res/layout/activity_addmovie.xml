@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/black1"
+    android:padding="16dp"
+    tools:context=".AddMovieActivity">
+
+    <EditText
+        android:id="@+id/editTextMovieName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Movie Name"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/editTextMovieCoverUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextMovieName"
+        android:hint="Movie Cover URL"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/editTextMovieTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextMovieCoverUrl"
+        android:hint="Movie Title"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/editTextSubTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextMovieTitle"
+        android:hint="Sub Title"
+        android:inputType="text"/>
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextSubTitle"
+        android:text="Submit"/>
+
+</RelativeLayout>

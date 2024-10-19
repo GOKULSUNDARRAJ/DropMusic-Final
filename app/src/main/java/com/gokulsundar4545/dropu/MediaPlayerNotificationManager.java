@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
+import android.widget.RemoteViews;
 
 import androidx.core.app.NotificationCompat;
 
@@ -50,29 +51,44 @@ public class MediaPlayerNotificationManager {
         }
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, playerIntent, flags);
+        PendingIntent previousIntent = getPendingIntentForAction("ACTION_PREVIOUS");
+        PendingIntent playIntent = getPendingIntentForAction("ACTION_PLAY");
+        PendingIntent pauseIntent = getPendingIntentForAction("ACTION_PAUSE");
+        PendingIntent nextIntent = getPendingIntentForAction("ACTION_NEXT");
+        // Inflate the custom layout
+        RemoteViews notificationLayout = new RemoteViews(context.getPackageName(), R.layout.custom_notification_layout);
 
-        // Build the big picture style notification
+        // Set the content in the custom layout
+        notificationLayout.setTextViewText(R.id.notification_title, title);
+        notificationLayout.setTextViewText(R.id.notification_subtitle, subtitle);
+        notificationLayout.setImageViewBitmap(R.id.notification_big_picture, bigPicture);
+
+
+        notificationLayout.setOnClickPendingIntent(R.id.previousButton, previousIntent);
+        notificationLayout.setOnClickPendingIntent(R.id.play, playIntent);
+        notificationLayout.setOnClickPendingIntent(R.id.pause, pauseIntent);
+        notificationLayout.setOnClickPendingIntent(R.id.nextbtn, nextIntent);
+
+
+
+        // Build the notification with the custom layout
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.mus123) // Set the icon
-                .setContentTitle(title) // Set the title
-                .setContentText(subtitle) // Set the subtitle
-                .setLargeIcon(largeIcon) // Set the large icon (song image)
+                .setSmallIcon(R.mipmap.ic_launcher_round) // Set the icon
+                .setContent(notificationLayout) // Set the custom content view
                 .setContentIntent(pendingIntent) // Set the pending intent
-                .setAutoCancel(false); // Automatically cancel the notification when clicked
-
-        // Set big picture style
-        NotificationCompat.BigPictureStyle bigPictureStyle = new NotificationCompat.BigPictureStyle()
-                .bigPicture(bigPicture)
-                .setBigContentTitle(title)
-                .setSummaryText(subtitle);
-
-        builder.setStyle(bigPictureStyle);
-        builder.setOngoing(true);
+                .setAutoCancel(false) // Automatically cancel the notification when clicked
+                .setCustomBigContentView(notificationLayout) // For expanded notifications
+                .setOngoing(true); // Make it a persistent notification
 
         // Display the notification
         notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
 
+    private PendingIntent getPendingIntentForAction(String action) {
+        Intent intent = new Intent(context, MediaPlayerBroadcastReceiver.class);
+        intent.setAction(action);
+        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+    }
 
 
     public void cancelNotification() {

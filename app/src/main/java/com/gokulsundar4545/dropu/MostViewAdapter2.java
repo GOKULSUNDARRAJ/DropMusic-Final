@@ -50,8 +50,8 @@ public class MostViewAdapter2 extends RecyclerView.Adapter<MostViewAdapter2.View
             public void onClick(View view) {
                 Context context = view.getContext();
                 // Assuming you have the MediaPlayerManager class defined with startPlaying method
-                MediaPlayerManager.startPlaying(context, song);
 
+                MediaPlayerManager.startPlaying(context, song, position, songList);
                 Intent intent=new Intent(view.getContext(), PlayerActivity.class);
                 context.startActivity(intent);
                 ((Activity) context).finish();

@@ -15,7 +15,7 @@
             android:id="@+id/nav_settings"
             android:title="Search"
             android:iconTint="@color/white"
-            android:icon="@drawable/serchwhite1" />
+            android:icon="@drawable/searchnew" />
 
         <!-- Logout -->
         <item

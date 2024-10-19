@@ -83,9 +83,6 @@ public class FavoriteActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent=new Intent(FavoriteActivity.this, searchallActivity.class);
-        startActivity(intent);
-        finish();
-        overridePendingTransition(R.anim.slid_from_left, R.anim.slid_to_right);
+
     }
 }

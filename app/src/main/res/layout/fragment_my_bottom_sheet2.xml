@@ -133,23 +133,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="16dp"
+                    android:progressTint="@color/green1"
+                    android:indeterminateOnly="false"
+                    android:max="100"
+                    android:progressDrawable="@drawable/circular_progress"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/download23"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/download34"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/notification57"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="8dp"
-                    android:drawableLeft="@drawable/baseline_download_for_offline_24"
                     android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/regular"
-                    android:text="Download"
                     android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:gravity="center"
+                    android:text="Download"
                     android:textColor="@color/white"
                     android:textSize="15dp"
-                    android:gravity="center"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/progressBar"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -268,7 +294,7 @@
                     android:fontFamily="@font/regular"
                     android:gravity="center"
                     android:paddingLeft="10dp"
-                    android:text="Show Drop code"
+                    android:text="Show drop code"
                     android:textColor="@color/white"
                     android:textSize="15dp"
                     android:textStyle="bold"
@@ -319,6 +345,50 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/download056"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageView46"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_send"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/notification57056"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/regular"
+                    android:paddingLeft="10dp"
+                    android:gravity="center"
+                    android:text="Share a song"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView46"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/download06"

@@ -18,11 +18,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class signupActivity extends AppCompatActivity {
 
-    EditText username1, email1, Password1,phone1;
+    EditText username1, email1, Password1;
     Button signup1;
-    ProgressBar progressBar;
 
-    private FirebaseAuth firebaseAuth;
+
 
     TextView forget;
     @SuppressLint("MissingInflatedId")
@@ -43,58 +42,40 @@ public class signupActivity extends AppCompatActivity {
         username1 = findViewById(R.id.user);
         email1 = findViewById(R.id.emailedt);
         Password1 = findViewById(R.id.passdt);
-        phone1=findViewById(R.id.phonedt);
+
         signup1 = findViewById(R.id.login);
-        progressBar = findViewById(R.id.progressBar); // Initialize progress bar
-        firebaseAuth = FirebaseAuth.getInstance();
 
         signup1.setOnClickListener(view -> {
             String username = username1.getText().toString().trim();
             String email = email1.getText().toString().trim();
             String password = Password1.getText().toString().trim();
-            String phone=phone1.getText().toString().trim();
 
-            if (TextUtils.isEmpty(username) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(phone) || !phone.contains("+91")) {
-                Snackbar.make(view, "All fields are required and phone must contain '+91'", Snackbar.LENGTH_SHORT).show();
-            }
-            else {
-                // Show progress bar
-                progressBar.setVisibility(View.VISIBLE);
-                signup1.setVisibility(View.INVISIBLE);
+            // Email validation pattern
+            String emailPattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}";
 
-                // Sign up the user with email and password
-                firebaseAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(task -> {
-                            // Hide progress bar regardless of the result
-                            progressBar.setVisibility(View.GONE);
-                            signup1.setVisibility(View.VISIBLE);
+            if (TextUtils.isEmpty(username) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+                Snackbar.make(view, "All fields are required", Snackbar.LENGTH_SHORT).show();
+            } else if (!email.matches(emailPattern)) {
+                Snackbar.make(view, "Invalid email address", Snackbar.LENGTH_SHORT).show();
+            } else if (password.length() <= 6) {
+                Snackbar.make(view, "Password must be more than 6 characters", Snackbar.LENGTH_SHORT).show();
+            } else  if ( username.length()<=7){
+                Snackbar.make(view, "User Name  be more than 7 characters", Snackbar.LENGTH_SHORT).show();
+            }else {
+                // Create an Intent to start the NextActivity
+                Intent intent = new Intent(signupActivity.this, PhoneNumberActivity.class);
 
-                            if (task.isSuccessful()) {
-                                // Sign up successful, save user data to Realtime Database
-                                User1 user = new User1(username, email,phone);
-                                FirebaseDatabase.getInstance().getReference("Users")
-                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                        .setValue(user)
-                                        .addOnCompleteListener(task1 -> {
-                                            if (task1.isSuccessful()) {
-                                                // User data saved successfully
-                                                startActivity(new Intent(signupActivity.this,LoginActivity.class));
-                                                Snackbar.make(view, "User registered successfully", Snackbar.LENGTH_SHORT).show();
+                // Put the data into the Intent
+                intent.putExtra("EXTRA_USERNAME", username);
+                intent.putExtra("EXTRA_EMAIL", email);
+                intent.putExtra("EXTRA_PASSWORD", password);
 
-                                            } else {
-                                                // Failed to save user data
-                                                Snackbar.make(view, "Failed to register user", Snackbar.LENGTH_SHORT).show();
-
-                                            }
-                                        });
-                            } else {
-                                // Sign up failed
-                                Snackbar.make(view, "Sign up failed: " + task.getException().getMessage(), Snackbar.LENGTH_SHORT).show();
-
-                            }
-                        });
+                // Start the NextActivity
+                startActivity(intent);
             }
         });
+
+
 
     }
 

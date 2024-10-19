@@ -72,8 +72,8 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
-                // Assuming you have the MediaPlayerManager class defined with startPlaying method
-                MediaPlayerManager.startPlaying(context, song);
+                // Assuming you have the MediaPlayerManager class defined with startPlaying methodMediaPlayerManager.startPlaying(context, song);
+                MediaPlayerManager.startPlaying(context, song, position, favoritesList);
 
 
                 Intent intent = new Intent(context, PlayerActivity.class);

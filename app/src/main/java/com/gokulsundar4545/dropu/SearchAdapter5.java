@@ -76,8 +76,8 @@ public class SearchAdapter5 extends RecyclerView.Adapter<SearchAdapter5.SongView
             public void onClick(View view) {
                 Context context = view.getContext();
                 // Assuming you have the MediaPlayerManager class defined with startPlaying method
-                MediaPlayerManager.startPlaying(context, song);
 
+                MediaPlayerManager.startPlaying(context, song, position, songList);
                 Toast.makeText(context, "Clicked: " + song.getTitle(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, PlayerActivity.class);
                 context.startActivity(intent);

@@ -2,17 +2,16 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="160dp"
     android:id="@+id/carproduct"
     app:cardCornerRadius="15dp"
-    android:layout_height="130dp"
+    android:layout_height="200dp"
     android:layout_margin="10dp"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:id="@+id/laypro"
         android:orientation="vertical">
 
@@ -31,74 +30,49 @@
 
                 <ImageView
                     android:id="@+id/song_cover_image_view"
-                    android:layout_width="150dp"
+                    android:layout_width="160dp"
                     android:layout_height="130dp"
                     android:scaleType="fitXY"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/song_title_text_view3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="7dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/semibold"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="Favorite Playlist"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    app:layout_constraintStart_toEndOf="@+id/song_cover_image_view"
-                    app:layout_constraintTop_toTopOf="@+id/song_cover_image_view" />
 
-
-                <TextView
-                    android:id="@+id/song_title_text_view"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/semibold"
-                    android:maxLines="1"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    app:layout_constraintStart_toEndOf="@+id/song_cover_image_view"
-                    app:layout_constraintTop_toBottomOf="@+id/song_title_text_view3" />
-
-                <TextView
-                    android:id="@+id/song_title_text_view4"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/semibold"
-                    android:maxLines="1"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    app:layout_constraintStart_toEndOf="@+id/song_cover_image_view"
-                    app:layout_constraintTop_toBottomOf="@+id/song_title_text_view" />
-
-
-                <TextView
-                    android:id="@+id/song_title_text_view4subb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/semibold"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="Lets sart the vibe..🔥"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    app:layout_constraintStart_toEndOf="@+id/song_cover_image_view"
-                    app:layout_constraintTop_toBottomOf="@+id/song_title_text_view4" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <TextView
+            android:id="@+id/song_title_text_view3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/semibold"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:text="Favorite Playlist"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            app:layout_constraintStart_toEndOf="@+id/song_cover_image_view"
+            app:layout_constraintTop_toTopOf="@+id/song_cover_image_view" />
+
+
+        <TextView
+            android:id="@+id/song_title_text_view4subb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/semibold"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:text="Lets sart the vibe..🔥"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            app:layout_constraintStart_toEndOf="@+id/song_cover_image_view"/>
 
 
     </LinearLayout>
+
+
 </androidx.cardview.widget.CardView>
 
 
